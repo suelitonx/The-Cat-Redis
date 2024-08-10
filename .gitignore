@@ -1,0 +1,32 @@
+# Configuração para o projeto Node (noderedis)
+noderedis/node_modules/
+
+# Configuração padrão para o projeto Flutter (thecatredis)
+thecatredis/.flutter-plugins
+thecatredis/.flutter-plugins-dependencies
+thecatredis/.pub-cache/
+thecatredis/.pub/
+thecatredis/**/doc/api/
+thecatredis/**/ios/Flutter/.last_build_id
+thecatredis/.dart_tool/
+thecatredis/.build/
+thecatredis/*.class
+thecatredis/*.log
+thecatredis/*.pyc
+thecatredis/*.swp
+thecatredis/.DS_Store
+thecatredis/.atom/
+thecatredis/.buildlog/
+thecatredis/.history
+thecatredis/.svn/
+thecatredis/migrate_working_dir/
+thecatredis/*.iml
+thecatredis/*.ipr
+thecatredis/*.iws
+thecatredis/.idea/
+#thecatredis/.vscode/
+thecatredis/app.*.symbols
+thecatredis/app.*.map.json
+thecatredis/android/app/debug
+thecatredis/android/app/profile
+thecatredis/android/app/release
