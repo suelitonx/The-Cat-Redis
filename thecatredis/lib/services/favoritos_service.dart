@@ -16,7 +16,7 @@ class FavoritosService {
       return (false, cats, 'Usuário não autenticado.');
     }
 
-    final r = await http.get(Uri.parse('http://localhost:5000/favoritos'), headers: {'authorization': token});
+    final r = await http.get(Uri.parse('https://sueliton.shop/favoritos'), headers: {'authorization': token});
 
     if (r.statusCode == 200) {
       // [https://cdn2.thecatapi.com/images/h8.jpg, https://cdn2.thecatapi.com/images/19l.gif, https://cdn2.thecatapi.com/images/1cl.jpg, https://cdn2.thecatapi.com/images/1n6.jpg]
@@ -45,7 +45,7 @@ class FavoritosService {
       return (false, 'Usuário não autenticado.');
     }
 
-    final r = await http.post(Uri.parse('http://localhost:5000/addfavoritos'), body: {
+    final r = await http.post(Uri.parse('https://sueliton.shop/addfavoritos'), body: {
       "useremail": email,
       "favorito": cat.url,
     }, headers: {
@@ -65,7 +65,7 @@ class FavoritosService {
       return (false, 'Usuário não autenticado.');
     }
 
-    final r = await http.delete(Uri.parse('http://localhost:5000/favoritos'), body: {
+    final r = await http.delete(Uri.parse('https://sueliton.shop/favoritos'), body: {
       "useremail": email,
       "favorito": cat.url,
     }, headers: {

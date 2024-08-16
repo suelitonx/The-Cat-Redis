@@ -7,7 +7,7 @@ const JWT_SECRET = "TACIAN0LINDO";  // SECRET DO JWT
 
 async function saveUserToRedis(useremail: string, userpassword: string) {
     // Criando um cliente do Redis
-    const redisClient = await createClient().on('error', err => console.log('Erro no cliente REDIS.', err)).connect();
+    const redisClient = await createClient({url: 'redis://:@TurmaBD2024mulest@127.0.0.1:6379'}).on('error', err => console.log('Erro no cliente REDIS.', err)).connect();
     
     // Hashing da senha
     const hashedPassword = await bcrypt.hash(userpassword, 10);
@@ -45,7 +45,7 @@ export class AutenticacionController {
         let { useremail, userpassword } = req.body;
 
         // Criando um cliente do Redis
-        const redisClient = await createClient().on('error', err => console.log('Erro no cliente REDIS.', err)).connect();
+        const redisClient = await createClient({url: 'redis://:@TurmaBD2024mulest@127.0.0.1:6379'}).on('error', err => console.log('Erro no cliente REDIS.', err)).connect();
 
         const userDataString = await redisClient.get(useremail);
 
@@ -81,7 +81,7 @@ export class AutenticacionController {
         }
 
         // Criando um cliente do Redis
-        const redisClient = await createClient().on('error', err => console.log('Erro no cliente REDIS.', err)).connect();
+        const redisClient = await createClient({url: 'redis://:@TurmaBD2024mulest@127.0.0.1:6379'}).on('error', err => console.log('Erro no cliente REDIS.', err)).connect();
 
         // Pegando os dados do Redis
         const userDataString = await redisClient.get(useremail);

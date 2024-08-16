@@ -15,6 +15,9 @@ router.get('/', (req, res) => {
 router.get('/validar', verifyToken, AutenticacionController.validarToken);
 
 //Favoritos
+router.get('/teste', FavoritosController.teste);
+router.get('/testeg', FavoritosController.testeget);
+
 router.get('/favoritos', verifyToken, FavoritosController.getFavoritos); // Rota protegida
 router.post('/addfavoritos', verifyToken, FavoritosController.addFavorito); // Rota protegida
 router.delete('/favoritos', verifyToken, FavoritosController.removeFavorito); // Rota protegida

@@ -18,11 +18,21 @@ class AuthService extends ValueNotifier<bool> {
   Future<(bool r, String m)> login(String email, String senha) async {
     bool resultado = false;
     String mensagem = '';
+    bool timeout = false;
 
-    final r = await http.post(Uri.parse('http://localhost:5000/login'), body: {
+    print("Fazendo logim");
+
+    final r = await http.post(Uri.parse('https://sueliton.shop/login'), body: {
       "useremail": email,
       "newpassword": senha,
+    }).timeout(const Duration(seconds: 3), onTimeout: () {
+      timeout = true;
+      return http.Response('', 408); // Return a response with status code 408 (Request Timeout)
     });
+
+    if (timeout) {
+      return (false, 'Tempo de conexão excedido.');
+    }
 
     final json = jsonDecode(r.body);
 
@@ -34,6 +44,8 @@ class AuthService extends ValueNotifier<bool> {
         await salvarToken(json['token'], email, senha);
         value = true;
       }
+
+      print("deu certo");
     } else {
       mensagem = json['message'] ?? 'Erro ao efetuar login.';
     }
@@ -45,7 +57,7 @@ class AuthService extends ValueNotifier<bool> {
     bool resultado = false;
     String mensagem = '';
 
-    final r = await http.post(Uri.parse('http://localhost:5000/signup'), body: {
+    final r = await http.post(Uri.parse('https://sueliton.shop/signup'), body: {
       "useremail": email,
       "userpassword": senha,
     });
@@ -106,7 +118,7 @@ class AuthService extends ValueNotifier<bool> {
       return false;
     }
 
-    final r = await http.get(Uri.parse('http://localhost:5000/validar'), headers: {'authorization': token});
+    final r = await http.get(Uri.parse('https://sueliton.shop/validar'), headers: {'authorization': token});
 
     if (r.statusCode == 200) {
       print('Token válido: $token');
